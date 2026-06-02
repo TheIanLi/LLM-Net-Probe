@@ -1,2 +1,27 @@
 # LLM-Net-Probe
-A cross-platform network diagnostic tool for LLM API connectivity, specifically optimized for WSL2.
+
+> WSL2 环境下的 LLM API 网络连通性检测工具。
+
+⚠️ **这是一个练手项目。** 写它的时候我在学 WSL2 网络、环境变量注入、跨平台 Python 脚本。代码很简陋——硬编码端口、全局变量随意设、异常处理靠 `sys.exit(1)`——但它是我的第一个"真正跑起来并解决了实际问题"的工具。留在 GitHub 上当个里程碑。
+
+## 它做什么
+
+在 WSL2 里跑 AI agent 的时候经常遇到网络不通的问题——WSL2 的 IP 是动态的，代理端口得手动配。这个小脚本：
+
+1. 自动检测当前是 Windows 还是 WSL2
+2. 获取 Windows 主机的 IP 地址
+3. 注入 HTTP/HTTPS 代理环境变量
+4. 调用 Groq API 验证连通性
+
+## 运行
+
+```bash
+export GROQ_API_KEY="你的key"
+python probe.py
+```
+
+## 为什么留着
+
+这代码写得不好。但那段时间我每天都在折腾 AI agent，网络问题反复出现，这个小脚本帮我省了无数 debug 时间。它是那种"功能简单但真的有用"的东西。
+
+也是它让我意识到：**先解决自己的问题，再考虑写得好看。**
